@@ -1,0 +1,49 @@
+import java.util.Scanner;
+
+public class MataMata {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Armazenando e nomeando as equipes de A a P
+        char[] equipes = new char[16];
+        for (int i = 0; i < 16; i++) {
+            equipes[i] = (char) ('A' + i);
+        }
+
+        // Para armazenar os resultados dos 15 jogos e os seus placares
+        int[][] resultados = new int[15][2];  
+
+        // Para ler os resultados dos 15 jogos
+        for (int i = 0; i < 15; i++) {
+            int gol1 = scanner.nextInt();
+            int gol2 = scanner.nextInt();
+            resultados[i][0] = gol1;
+            resultados[i][1] = gol2;
+        }
+
+        // Determinando os vencedores de cada jogo
+        char[] vencedores = new char[16];
+        for (int i = 0; i < 16; i++) {
+            vencedores[i] = equipes[i];
+        }
+
+        int rodada = 0;
+        while (rodada < 4) { // Pois são 4 rodadas: 16 Avos -> Oitavas -> Quartas -> Semi -> Final
+            int indice = 0;
+            for (int i = 0; i < 16; i += 2) {
+                // Jogo entre vencedores[i] e vencedores[i+1]
+                int resultadoJogo = resultados[indice][0] > resultados[indice][1] ? 0 : 1;
+                vencedores[i / 2] = vencedores[i + resultadoJogo];
+                indice++;
+            }
+
+            rodada++;
+        }
+
+        // O vencedor final é o vencedor do jogo 14
+        System.out.println(vencedores[0]);
+
+        scanner.close();
+    }
+}

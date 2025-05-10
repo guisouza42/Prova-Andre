@@ -29,10 +29,10 @@ public class MataMata {
         }
 
         int rodada = 0;
-        while (rodada < 4) { // Pois são 4 rodadas: 16 Avos -> Oitavas -> Quartas -> Semi -> Final
+        while (rodada < 4) { // São 4 rodadas: 16 Avos -> Oitavas -> Quartas -> Semi -> Final
             int indice = 0;
             for (int i = 0; i < 16; i += 2) {
-                // Jogo entre vencedores[i] e vencedores[i+1]
+                // Jogo entre os vencedores
                 int resultadoJogo = resultados[indice][0] > resultados[indice][1] ? 0 : 1;
                 vencedores[i / 2] = vencedores[i + resultadoJogo];
                 indice++;
@@ -41,7 +41,7 @@ public class MataMata {
             rodada++;
         }
 
-        // O vencedor final é o vencedor do jogo 14
+        // O vencedor final é o vencedor do jogo 14, o jogo da final
         System.out.println(vencedores[0]);
 
         scanner.close();
